@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://www.bootcss.com/examples/sticky-footer.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title %}{% endblock %} | Trajectory Code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link href="/static/blog/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      html,
+      body {
+          height: 100%;
+          font-family:"微软雅黑"
+      }
+      #wrap {
+          min-height: 100%;
+          height: auto !important;
+          height: 100%;
+          margin: 0 auto -60px;
+      }
+      .container-narrow {
+          margin: 0 auto;
+          max-width: 700px;
+       }
+      .container-narrow > hr {
+          margin: 30px 0;
+       }
+      #push,
+      #footer {
+          height: 60px;
+      }
+      #footer {
+          background-color: #f5f5f5;
+      }
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+      .container {
+          width: auto;
+          max-width: 680px;
+      }
+      .container .credit {
+          margin: 20px 0;
+      }
+
+    </style>
+
+    <link href="/static/blog/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link type="text/css" href="/static/blog/css/code.css" rel="stylesheet">
+    <link type="text/css" href="/static/blog/css/custom.css" rel="stylesheet">
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/static/blog/img/favicon_128x128.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="48x48" href="/static/blog/img/favicon_48x48.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="32x32" href="/static/blog/img/favicon_32x32.ico">
+    <link rel="apple-touch-icon-precomposed" href="/static/blog/img/favicon_48x48.ico">
+    <link rel="shortcut icon" href="/static/blog/img/favicon_48x48.ico">
+    </head>
+
+<body>
+    <div class="container-narrow">
+       <div class="masthead">
+          <ul class="nav nav-pills pull-right">
+          <li><a href="/">Home</a></li>
+          <li><a href="/archive/">Archive</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/page/about/">About</a></li>
+
+          <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Action<b class="caret"></b></a>
+             <ul class="dropdown-menu">
+               <li><a href="/admin/">Management</a></li>
+               <li><a href="/search/">Search</a></li>
+               <li class="divider"></li>
+               <li class="dropdown-header">User</li>
+               <li><a href="#">游客</a></li>
+               <li><a href="/admin/logout/">LoginOut</a></li>
+             </ul>
+          </li>
+          </ul>
+       </div>
+       <h2 class="muted">JackeyGao</h2>
+       <hr>
+    </div>
+    <!-- content -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- footer -->
+    <br><br><br>
+    <div id="footer">
+      <div class="container">
+          <p class="muted credit" align='center'><a href='/sitemap.xml'>Sitemap</a> | Copyright © <a href="/">JackeyGao</a>[<a href="/admin/">Admin</a>]</p>
+      </div>
+    </div>
+    <!-- javascript -->
+    <script src="/static/blog/js/jquery.min.js"></script>
+    <script src="/static/blog/js/bootstrap.min.js "></script>
+    <script src="/static/blog/js/auto_active.js"></script>
+    {% include 'custom_tongji.html' %}
+</body></html>
+

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 26
+/mdblog/!svn/ver/255/6/wmd
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/mdblog/!svn/ver/255/6/wmd/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/mdblog/!svn/ver/255/6/wmd/settings.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/mdblog/!svn/ver/255/6/wmd/models.py
+END
+widgets.py
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/mdblog/!svn/ver/255/6/wmd/widgets.py
+END

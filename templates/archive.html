@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load markup %}
+{% block title %}
+Archive
+{% endblock %}
+
+{% block content %}
+    <!-- <h5>{{ listname }}</h5> -->
+    {% for year,mon_logs in archive_items  %}
+    	<p><h3>{{ year }}年</h3></p>
+        {% for month,logs in mon_logs %}
+          <p style='text-indent:4em'><h4>&nbsp;&nbsp;&nbsp;&nbsp;{{ month }}月</h4></p>
+          {% for log in logs %}
+          <div>
+              <p style='text-indent:4em'>● <a href="/page/{{ log.title }}/">{{ log.title|capfirst  }}</a></p>
+          </div>
+          {% endfor %}
+        {% endfor %}
+    {% endfor %}
+    <blockquote>
+      <small><a href="#" title="Archive">{{ querySet|length }}+</a></small>
+    </blockquote>
+    <hr>
+{% endblock %}

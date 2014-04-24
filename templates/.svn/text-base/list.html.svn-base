@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load markup %}
+{% block title %} {{ listname }} {% endblock %}
+
+{% block content %}
+    <h5>{{ listname }}</h5>
+    {% for log in articleList  %}
+        <div>
+            <h3><a href="/page/{{ log.title }}/">{{ log.title|capfirst  }}</a></font></h3>
+	    <section><div class="lead">
+            {{ log.content|markdown:"codehilite"|truncatewords:"30"|safe }}</div></section>
+            <p><a href="/page/{{ log.title }}/">Read More</a> | ●{{ log.created|date:"F j, Y"}}</p> 
+        </div>
+    {% endfor %}
+    <hr>
+    <div align='center'>
+    {% if articleList.has_previous %}
+    <a href="{{ item_url }}?page={{ articleList.previous_page_number }}" title="Pre">上一页</a> {% endif %}
+    {% for p in page_range %}
+        {% ifequal p articleList.number %}
+            <span style="font-size:16px;" title="当前页"><b>{{p}}</b></span>
+        {% else %}
+            {% ifequal 1 p %}
+                <a href='/' title='Home'>{{p}}</a> 
+            {% else %}
+            <a href="{{ item_url }}?page={{p}}" title="第{{p}}页">{{p}}</a>
+            {% endifequal %}
+        {% endifequal %}
+    {% endfor %}     
+    {% if articleList.has_next %}
+    <a href="{{ item_url }}?page={{ articleList.next_page_number }}" title="Next">下一页</a>
+    {% endif %}  
+    <b>
+        {%if articleList.paginator.num_pages%}共 {{ articleList.paginator.num_pages }} 页{%endif%}
+    </b>
+    </div>
+{% endblock %}

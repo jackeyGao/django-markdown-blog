@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/mdblog/!svn/ver/255/6/filebrowser/templatetags
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/mdblog/!svn/ver/255/6/filebrowser/templatetags/__init__.py
+END
+fb_versions.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/mdblog/!svn/ver/255/6/filebrowser/templatetags/fb_versions.py
+END
+fb_pagination.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/mdblog/!svn/ver/255/6/filebrowser/templatetags/fb_pagination.py
+END
+fb_csrf.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/mdblog/!svn/ver/255/6/filebrowser/templatetags/fb_csrf.py
+END
+fb_tags.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/mdblog/!svn/ver/255/6/filebrowser/templatetags/fb_tags.py
+END
