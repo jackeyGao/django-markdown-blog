@@ -5,6 +5,7 @@ Django写的一个markdown 博客
 
 ####说明
 一个基于django框架的博客系统, 与以往的渲染模式不同的是此程序采用简洁的markdown语法渲染。 
+[Demo](http://mdblog.sinaapp.com)
 
 ####特点
 * 蓝、白、黑小青春UI
