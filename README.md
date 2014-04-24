@@ -13,9 +13,11 @@ Django写的一个markdown 博客
     # wget https://github.com/jackeyGao/django-markdown-blog/archive/master.zip
     # unzip master
     # cd django-markdown-blog-master 
+    # python manager.py syncdb
     # python manager.py runserver 0.0.0.0:8080
 
 以上方法仅仅适合`测试`环境， DEBUG阶段请修改`app/settings.py` `DEBUG=True`， 如果想要部署，请google`Django + nginx\apache`。
+更多上线文档: http://www.jackeygao.com/page/%E5%8D%9A%E5%AE%A2%E7%A8%8B%E5%BA%8F%E6%AD%A3%E5%BC%8F%E5%BC%80%E6%BA%90/
 
 ####特点
 
