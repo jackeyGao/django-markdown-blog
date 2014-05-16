@@ -83,7 +83,7 @@ except ImportError:
     )
      
 
-alipay_transfer = "./page/alipayQRcode/"
+alipay_transfer = "/page/alipayQRcode/"
 
 url_list = ['[creativecommons]:http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh', 
             '[alipay]:%s' % alipay_transfer,]
