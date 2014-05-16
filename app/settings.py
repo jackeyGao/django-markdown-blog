@@ -12,18 +12,18 @@ try:
     
     #SAE环境aa
     import sae.const
-    is_sae=True
-    DEBUG=False
+    is_sae = True
+    DEBUG  = False
     TEMPLATE_DEBUG = False
-    ENGINE='django.db.backends.mysql' # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+    ENGINE = 'django.db.backends.mysql' # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
 
-    MYSQL_DB=sae.const.MYSQL_DB
+    MYSQL_DB   = sae.const.MYSQL_DB
     MYSQL_USER = sae.const.MYSQL_USER
     MYSQL_PASS = sae.const.MYSQL_PASS
     MYSQL_HOST = sae.const.MYSQL_HOST
     MYSQL_HOST_S = sae.const.MYSQL_HOST_S
     MYSQL_PORT = sae.const.MYSQL_PORT
-    PROJ_DIR=''
+    PROJ_DIR = ''
     TEMPLATE_DIRS = (
         os.path.join(PROJ_DIR,'templates'),
     )
@@ -51,8 +51,8 @@ try:
 
 except ImportError:
     # 正常主机环境
-    ENGINE='django.db.backends.sqlite3' # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-    MYSQL_DB='web.db'
+    ENGINE     ='django.db.backends.sqlite3' # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+    MYSQL_DB   ='web.db'
     MYSQL_HOST = '127.0.0.1'
     MYSQL_PORT = '3306'
     MYSQL_USER = 'root'
@@ -83,7 +83,7 @@ except ImportError:
     )
      
 
-alipay_transfer = "https://me.alipay.com/jackeygao"
+alipay_transfer = "./page/alipayQRcode/"
 
 url_list = ['[creativecommons]:http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh', 
             '[alipay]:%s' % alipay_transfer,]
