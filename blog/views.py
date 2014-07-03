@@ -29,8 +29,8 @@ class ListViewBase(ListView):
         queryset = self.get_queryset()
         page_size = self.get_paginate_by(queryset)
         paginator, page, queryset, is_paginated = self.paginate_queryset(queryset, page_size)
-        after_range_num = 5
-        bevor_range_num = 4
+        after_range_num = 2
+        bevor_range_num = 2
 
 
         if self.cur_page >= after_range_num:
@@ -53,6 +53,10 @@ class IndexListView(ListViewBase):
         querySet = Blog.objects.order_by("-updated").filter(is_valid=1)
         return querySet
 
+    def get_context_data(self, **kwargs):
+        kwargs['listname'] = 'Home'
+        return super(IndexListView, self).get_context_data(**kwargs)
+
 
 class TagsListView(ListViewBase):
     paginate_by = 6
@@ -68,11 +72,6 @@ class TagsListView(ListViewBase):
         return super(TagsListView, self).get_context_data(**kwargs)
     
 
-class BlogDetailView(DetailView):
-    model = Blog
-    template_name="page.html"
-    slug_field = 'title'
-    context_object_name = 'page'
 
 
 class ArchiveListView(ListView):
@@ -128,19 +127,16 @@ class TagsPageListView(ListView):
         return tags_items
 
 
+class BlogDetailView(DetailView):
+    model = Blog
+    template_name="page.html"
+    slug_field = 'title'
+    context_object_name = 'page'
+
+
 def download(request, offset):
-    """Download markdown File. 
-    由于SAE不能fileopen所以单独以text/plain 来Response。"""
-
     blog = get_object_or_404(Blog, id=offset)
-
-    #if is_sae: 
     return HttpResponse(blog.get_full_content().encode('GB18030'), content_type='text/plain')
-
-    with open(u'static/blog/downloads/markdown_%s.md' % offset, 'w') as f:
-        f.write(blog.get_full_content().encode('utf-8'))
-
-    return HttpResponseRedirect(u'/static/blog/downloads/markdown_%s.md' % offset)
 
 
 def error500(request):
