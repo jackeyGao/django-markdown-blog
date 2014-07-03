@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load markup %}
+{% block title %} {{ listname }} {% endblock %}
+
+{% block content %}
+    <h5>{{ listname }}</h5>
+    {% for log in articleList  %}
+        <div>
+            <h3><a href="/page/{{ log.title }}/">{{ log.title|capfirst  }}</a></h3>
+	    <section>
+              <div class="lead">
+                {{ log.content|markdown:"codehilite"|truncatewords:"30"|safe }}
+              </div>
+            </section>
+            <p><a href="/page/{{ log.title }}/">Read More</a> | ●{{ log.created|date:"F j, Y"}}</p> 
+        </div>
+    {% endfor %}
+    <hr>
+    <div class="pagination pagination-centered pagination-small">
+    <ul>
+    {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">上一页</a></li>
+    {% else %}
+        <li class="disabled"><a>上一页</a></li>
+    {% endif %}
+    {% for p in page_range %}
+        {% ifequal p page_obj.number %}
+            <li class="active"><a title="当前页">{{ p }}</a></li>
+        {% else %}
+            {% ifequal 1 p %}
+               <li><a href="/" title='Home'>{{ p }}</a></li>
+            {% else %}
+               <li><a href="?page={{ p }}" title='第{{p}}页'>{{ p }}</a></li>  
+            {% endifequal %}
+        {% endifequal %}
+     {% endfor %} 
+
+    {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">下一页</a></li>
+    {% else %}
+        <li class="disabled"><a>下一页</a></li>
+    {% endif %}  
+    <b>
+        {%if articleList.paginator.num_pages%}共 {{ articleList.paginator.num_pages }} 页{%endif%}
+    </b>
+    </div>
+{% endblock %}

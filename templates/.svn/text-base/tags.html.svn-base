@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load markup %}
+{% block title %}
+Tags
+{% endblock %}
+
+{% block content %}
+    <h5 id="tags">Tags</h5>
+  <section class="group-tags">
+  <ul class="tag-box">
+    {% for tag,count in tags_items  %}
+       <li><a href="/tagSearchList/{{ tag }}/">{{ tag|capfirst  }} <span>{{ count }}</span></a></li>
+    {% endfor %}
+  </ul>
+  </section>
+  <hr>
+  <blockquote>
+    <small><a href="#tags" title="Tags">{{ tags_items|length }}+</a></small>
+  </blockquote>
+{% endblock %}

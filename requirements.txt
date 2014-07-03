@@ -1,0 +1,6 @@
+django==1.5.5
+uwsgi==2.0.3
+MySQLdb==1.2.3
+django-grappelli==2.4.5
+markdown==2.4.0
+pygments==1.6

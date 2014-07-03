@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 26
+/mdblog/!svn/ver/241/5/app
+END
+wsgi.py
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/mdblog/!svn/ver/26/5/app/wsgi.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/mdblog/!svn/ver/26/5/app/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/mdblog/!svn/ver/252/5/app/settings.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/mdblog/!svn/ver/250/5/app/urls.py
+END

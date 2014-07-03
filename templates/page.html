@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load markup %}
+{% block title %}
+{{ page.title|capfirst }}
+{% endblock %}
+
+{% block content %}
+        <!-- Page Content BEGIN -->
+          <h3><a href="/page/{{ page.title }}/">{{ page.title|capfirst  }}</a></h3>
+          <div class="lead"> 
+            {{ page.get_full_content|markdown:"codehilite"|safe }}
+          </div>
+  	  <blockquote>
+            <small>
+	    <a href="/download/{{ page.id }}/" title="Down MakrDown File." target='_blank'>DownMarkdown</a>
+	    ●{{ page.created|date:"F j, Y"}} 
+	    {% if page.is_valid %} ●Tags: {% for tag in page.tag_name.all %} <a href="/tagSearchList/{{ tag }}/">{{tag}}</a> {% endfor %} {% endif %} </small>
+	  </blockquote>
+        <!-- Page Content END -->
+	  {% include 'custom_share.html' %}
+	  <hr>
+        <!-- Conmment BEGIN -->
+	  {% if page.is_reply %}
+            <div>
+              {% include 'custom_disqus.html' %} 
+            </div>
+	  {% else %}
+	     <p>此页面不能评论. ^o^</p>
+	  {% endif %}
+        <!-- Conmment END -->
+       
+        <!-- UJian Button BEGIN -->
+          {% include 'custom_ujian.html' %}
+        <!-- UJian Button END -->
+{% endblock %}

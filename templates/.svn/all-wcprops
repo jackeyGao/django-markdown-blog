@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/mdblog/!svn/ver/204/5/templates
+END
+page.html
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/mdblog/!svn/ver/217/5/templates/page.html
+END
+tags.html
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/mdblog/!svn/ver/228/5/templates/tags.html
+END
+archive.html
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/mdblog/!svn/ver/229/5/templates/archive.html
+END
+robots.txt
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/mdblog/!svn/ver/200/5/templates/robots.txt
+END
+500.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/mdblog/!svn/ver/142/5/templates/500.html
+END
+search.html
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/mdblog/!svn/ver/226/5/templates/search.html
+END
+404.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/mdblog/!svn/ver/142/5/templates/404.html
+END
+base.html
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/mdblog/!svn/ver/223/5/templates/base.html
+END
+list.html
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/mdblog/!svn/ver/183/5/templates/list.html
+END
