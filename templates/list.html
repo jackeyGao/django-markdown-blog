@@ -13,7 +13,7 @@
                 {{ log.content|markdown:"codehilite"|truncatewords:"30"|safe }}
               </div>
             </section>
-            <p><a href="/page/{{ log.title }}/">Read More</a> | ●{{ log.created|date:"F j, Y"}}</p> 
+            <p><a href="/page/{{ log.title }}/">Read More</a> | ●{{ log.created|date:"F j, Y"}}</p>
         </div>
     {% endfor %}
     <hr>
