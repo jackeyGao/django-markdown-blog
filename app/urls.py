@@ -12,7 +12,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', IndexListView.as_view(), name='index'),
-    url(r'^page/(?P<slug>[\w|\.|\-]+)/$', BlogDetailView.as_view(), name='detail'),
+    url(r'^page/(?P<slug>.*)/$', BlogDetailView.as_view(), name='detail'),
     url(r'^archive/$', ArchiveListView.as_view(), name='archive'),
     url(r'^tags/$', TagsPageListView.as_view(), name='tags'),
     url(r'^tagSearchList/(?P<tag>[\w|\.|\-]+)/$',  TagsListView.as_view(), name='taglist'),
