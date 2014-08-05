@@ -6,14 +6,24 @@
 
 {% block content %}
   <!-- Page Content BEGIN -->
-  <h3><a href="/page/{{ page.title }}/">{{ page.title|capfirst  }}</a></h3>
+  <h3 contenteditable="false">{{ page.title|capfirst }}</h3>
   <div class="lead"> 
     {{ page.get_full_content|markdown:"codehilite"|safe }}
   </div>
   <blockquote>
     <small>
-      <a href="/download/{{ page.id }}/" title="Down MakrDown File." target='_blank'>DownMarkdown</a>●{{ page.created|date:"F j, Y"}} 
-      {% if page.is_valid %} ●Tags: {% for tag in page.tag_name.all %} <a href="/tagSearchList/{{ tag }}/">{{tag}}</a> {% endfor %} {% endif %} 
+      <a href="/download/{{ page.id }}/" title="Down MakrDown File." target='_blank'>
+        <button class="btn btn-mini btn-info" type="button">DownMarkDown</button>
+      </a>
+        ●{{ page.created|date:"F j, Y"}} 
+      {% if page.is_valid %} 
+        ●Tags: 
+        {% for tag in page.tag_name.all %}
+          <a href="/tagSearchList/{{ tag }}/"> 
+          <span class="label badge-info" contenteditable="false">{{ tag }}</span>
+          </a> 
+        {% endfor %} 
+      {% endif %} 
     </small>
   </blockquote>
   <!-- Page Content END -->

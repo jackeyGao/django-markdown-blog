@@ -4,16 +4,16 @@
 {% block title %} {{ listname }} {% endblock %}
 
 {% block content %}
-    <h5>{{ listname }}</h5>
+    <p><span class="label badge-info" contenteditable="false">{{ listname }}</span></p>
     {% for log in articleList  %}
         <div>
-            <h3><a href="/page/{{ log.title }}/">{{ log.title|capfirst  }}</a></h3>
+            <h3><a href="/page/{{ log.slug }}/">{{ log.title|capfirst  }}</a></h3>
 	    <section>
               <div class="lead">
                 {{ log.content|markdown:"codehilite"|truncatewords:"30"|safe }}
               </div>
             </section>
-            <p><a href="/page/{{ log.title }}/">Read More</a> | ●{{ log.created|date:"F j, Y"}}</p>
+            <p><a href="/page/{{ log.slug }}/">Read More</a> | ●{{ log.created|date:"F j, Y"}}</p>
         </div>
     {% endfor %}
     <hr>

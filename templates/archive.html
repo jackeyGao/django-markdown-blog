@@ -13,7 +13,7 @@ Archive
           <p style='text-indent:4em'><h4>&nbsp;&nbsp;&nbsp;&nbsp;{{ month }}月</h4></p>
           {% for log in logs %}
           <div>
-              <p style='text-indent:4em'>● <a href="/page/{{ log.title }}/">{{ log.title|capfirst  }}</a></p>
+              <p style='text-indent:4em'>● <a href="/page/{{ log.slug }}/">{{ log.title|capfirst  }}</a></p>
           </div>
           {% endfor %}
         {% endfor %}
