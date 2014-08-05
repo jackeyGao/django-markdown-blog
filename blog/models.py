@@ -35,7 +35,7 @@ class Blog(models.Model):
 
     def get_full_content(self):
         if self.is_valid:
-            page_full_url = u'http://mdblog.sinaapp.com' + self.get_absolute_url()
+            page_full_url = self.get_absolute_url()
              
             return self.content + "\n\n" + blog_template % page_full_url + "\n\n" + '\n'.join(url_list)
 

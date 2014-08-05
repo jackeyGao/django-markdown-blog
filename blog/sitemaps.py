@@ -17,7 +17,6 @@ class StaticViewSitemap(sitemaps.Sitemap):
 blogs_dict = {
     'queryset': Blog.objects.filter(is_valid=1),
     'date_field': 'updated',
-    
 }
 
 sitemaps = {
