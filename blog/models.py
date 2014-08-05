@@ -31,7 +31,7 @@ class Blog(models.Model):
         return ','.join([ x.tagname for x in self.tag_name.all() ])
     
     def get_absolute_url(self):
-        return u'/page/%s/' % self.title
+        return u'/page/%s/' % self.slug
 
     def get_full_content(self):
         if self.is_valid:

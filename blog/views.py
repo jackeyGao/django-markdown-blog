@@ -130,7 +130,7 @@ class TagsPageListView(ListView):
 class BlogDetailView(DetailView):
     model = Blog
     template_name="page.html"
-    slug_field = 'title'
+    slug_field = 'slug'
     context_object_name = 'page'
 
 
