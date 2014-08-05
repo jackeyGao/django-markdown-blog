@@ -1,10 +1,19 @@
 #!/bin/env python
+import os, sys
 
+prodir = os.getcwd()
+sys.path.append(prodir)
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 
 from blog.models import Blog
-from os import path
 
-result_dir = '/data/scripts/backup/results'
+
+result_dir = '/tmp'
 
 all_blog = Blog.objects.all()
 
@@ -13,7 +22,7 @@ all_blog = Blog.objects.all()
 for i in all_blog:
     if i.is_valid:
        
-        bf = open(path.join(result_dir, i.title + '.md'), 'w')
+        bf = open(os.path.join(result_dir, i.title + '.md'), 'w')
         bf.write("Title: %s\n" % i.title.encode('utf-8'))
         bf.write("Date: %s\n" % i.created.strftime('%Y-%m-%d %H:%M'))
         bf.write("Category: blog\n")
