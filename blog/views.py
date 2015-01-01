@@ -1,15 +1,13 @@
 # -*- coding:utf-8 -*-
-from django.http import Http404,HttpResponseRedirect,HttpResponse
+from django.views.generic import ListView, DetailView
+from django.db.models import Count 
+from django.http import HttpResponse
 from django.shortcuts import render_to_response,get_object_or_404 
+
 from blog.models import Blog, Tag
 
-from django.views.generic import ListView, DetailView
-
-from django.db.models import Count 
-from app.settings import is_sae
-import datetime
-
 import traceback
+import datetime
 
 class ListViewBase(ListView):  
     model = Blog
@@ -26,7 +24,7 @@ class ListViewBase(ListView):
         return super(ListViewBase, self).get(request, *args, **kwargs)
 
     def get_page_range(self, *args, **kwargs):
-        queryset = self.get_queryset()
+        queryset = self.get_queryset(**kwargs)
         page_size = self.get_paginate_by(queryset)
         paginator, page, queryset, is_paginated = self.paginate_queryset(queryset, page_size)
         after_range_num = 2
@@ -47,9 +45,9 @@ class ListViewBase(ListView):
          
 
 class IndexListView(ListViewBase):
-    paginate_by = 6
+    paginate_by = 20
 
-    def get_queryset(self):
+    def get_queryset(self, **kargs):
         querySet = Blog.objects.order_by("-updated").filter(is_valid=1)
         return querySet
 
@@ -61,7 +59,7 @@ class IndexListView(ListViewBase):
 class TagsListView(ListViewBase):
     paginate_by = 6
 
-    def get_queryset(self):
+    def get_queryset(self, **kwargs):
         self.tag = self.kwargs.get('tag')
         querySet = Blog.objects.filter(tag_name__in=Tag.objects.filter(tagname=self.tag), is_valid=1).order_by("-updated")
         return querySet
@@ -71,7 +69,25 @@ class TagsListView(ListViewBase):
         kwargs['title'] = self.tag + ' | '
         return super(TagsListView, self).get_context_data(**kwargs)
     
+class SearchListView(ListViewBase):
+    paginate_by = 6
 
+    def get(self, request, **kwargs):
+        if 'keyword' in request.GET:
+            self.keyword = request.GET['keyword']
+        else:
+            self.keyword = None
+
+	return super(SearchListView, self).get(request, **kwargs)
+    
+    def get_queryset(self, **kwargs):
+
+        return Blog.objects.filter(content__contains=self.keyword).filter(is_valid=1)
+
+    def get_context_data(self, **kwargs):
+        kwargs['title'] = self.keyword + ' | '
+        kwargs['parameters'] = '&keyword=%s' % self.keyword
+        return super(SearchListView, self).get_context_data(**kwargs)
 
 
 class ArchiveListView(ListView):
@@ -89,12 +105,13 @@ class ArchiveListView(ListView):
         querySet = self.get_src()
         for year in range(year, year-11,-1):
             month_items = {}
-            if not querySet.filter(created__year=year): continue
+            year_posts = [ post for post in querySet if post.created.year == year ]
+	    if not year_posts: continue
 
             for month in range(12,0,-1):
-                month_blogs=querySet.filter(created__year=year, created__month=month).order_by("-created")
-                if not month_blogs: continue
-                month_items[month] = month_blogs
+		month_posts = [ post for post in year_posts if post.created.month == month ]
+		if not month_posts: continue
+                month_items[month] = month_posts
 
             month_items = sorted(month_items.iteritems(), key = lambda asd:asd[0], reverse = True) #排序
             archive_items[year] = month_items
@@ -133,15 +150,15 @@ class BlogDetailView(DetailView):
     slug_field = 'slug'
     context_object_name = 'page'
 
+def search(request):
+    return render_to_response('search.html', {'title' : 'search'})
 
 def download(request, offset):
     blog = get_object_or_404(Blog, id=offset)
     return HttpResponse(blog.get_full_content().encode('GB18030'), content_type='text/plain')
 
-
 def error500(request):
     raise Http500()
-
 
 def error404(request):
     return render_to_response('404.html', { 'page' : ''})

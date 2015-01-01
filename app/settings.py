@@ -8,77 +8,20 @@ site_info = {
     'sign' : 'All things are difficult before they are easy.',
 }
 
-try:
-    
-    #SAE环境aa
-    import sae.const
-    is_sae=True
-    DEBUG=False
-    TEMPLATE_DEBUG = False
-    ENGINE='django.db.backends.mysql' # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+QINIU_ACCESS_KEY = '-9GvtvlzlYsJThtrNMVocrhcsh3lmOTAuY6aXEBT'
+QINIU_SECRET_KEY = 'l7fqBwgd-3M5ApcquLCFb-KKmLmNcIrlpQGJbBem'
+QINIU_BUCKET_DOMAIN = 'jackeygaoblog.qiniudn.com'
+QINIU_BUCKET_NAME = 'jackeygaoblog'
 
-    MYSQL_DB=sae.const.MYSQL_DB
-    MYSQL_USER = sae.const.MYSQL_USER
-    MYSQL_PASS = sae.const.MYSQL_PASS
-    MYSQL_HOST = sae.const.MYSQL_HOST
-    MYSQL_HOST_S = sae.const.MYSQL_HOST_S
-    MYSQL_PORT = sae.const.MYSQL_PORT
-    PROJ_DIR=''
-    TEMPLATE_DIRS = (
-        os.path.join(PROJ_DIR,'templates'),
-    )
-    INSTALLED_APPS = (
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.sites',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'django.contrib.sitemaps',
-        # 'django.contrib.flatpages', #simple page
-        # Uncomment the next line to enable the admin:
-        # sae not suport. 'filebrowser',
-        # sae not suport. 'grappelli.dashboard',
-        'grappelli',
-        'django.contrib.admin',
-        # Uncomment the next line to enable admin documentation:
-        'django.contrib.markup',
-        'blog',
-    )
-    
-    
-
-except ImportError:
-    # 正常主机环境
-    ENGINE='django.db.backends.mysql' # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-    MYSQL_DB='app'
-    MYSQL_HOST = '127.0.0.1'
-    MYSQL_PORT = '3306'
-    MYSQL_USER = 'django'
-    MYSQL_PASS = 'django123'
+ENGINE='django.db.backends.mysql' # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+MYSQL_DB='app'
+MYSQL_HOST = '127.0.0.1'
+MYSQL_PORT = '3306'
+MYSQL_USER = 'django'
+MYSQL_PASS = 'django123'
 #    MYSQL_DB   = 'app'
-    DEBUG = True
-    TEMPLATE_DEBUG = False
-    is_sae = False
- 
-    INSTALLED_APPS = (
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.sites',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'django.contrib.sitemaps',
-        # 'django.contrib.flatpages', #simple page
-        # Uncomment the next line to enable the admin:
-        #'filebrowser',
-        #'grappelli.dashboard',
-        'grappelli',
-        'django.contrib.admin',
-        # Uncomment the next line to enable admin documentation:
-        'django.contrib.markup',
-        'blog',
-    )
+DEBUG = False
+TEMPLATE_DEBUG = False
      
 
 alipay_transfer = "/page/alipayQRcode/"
@@ -118,7 +61,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'zh-cn'
+LANGUAGE_CODE = 'zh-CN'
 
 SITE_ID = 1
 
@@ -140,7 +83,7 @@ USE_TZ = True
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = '/tmp/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -196,6 +139,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    #'django.middleware.locale.LocaleMiddleware',
     # 'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware', #simple page
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -227,10 +171,11 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     #'filebrowser',
     #'grappelli.dashboard',
-    'grappelli',
-    'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    'django.contrib.markup',
+    'xadmin',
+    'crispy_forms',
+    'reversion',
+    #'django.contrib.admin',
+    'markup_deprecated',
     'blog',
 )
 
@@ -262,3 +207,10 @@ LOGGING = {
         },
     }
 }
+
+
+DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'
+#STATICFILES_STORAGE  = 'qiniustorage.backends.QiniuStaticStorage'
+
+
+

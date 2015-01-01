@@ -6,8 +6,17 @@ Search
 
 {% block content %}
 
-<h2>Search</h2>
-<div>
-{% include 'custom/search.html' %}
-</div>
+  <form class="form-horizontal" action="/searchList/" method="get">
+    <fieldset>
+    <div class="control-group">
+          <!-- Search input-->
+          <!-- <label class="control-label"></label> -->
+          <div class="controls">
+            <input type="text" placeholder="Keyword" class="input-xlarge search-query" name="keyword">
+            <button class="btn btn-success">Search</button>
+          </div>
+        </div>
+    </fieldset>
+  </form>
+
 {% endblock %}

@@ -43,5 +43,9 @@ class Blog(models.Model):
             return self.content
 
 
+class Photo(models.Model):
+    image = models.ImageField(upload_to='media')
+ 
+     
 
 

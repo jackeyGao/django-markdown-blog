@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load markup %}
 {% block title %} {{ listname }} {% endblock %}
 
@@ -8,41 +9,48 @@
     {% for log in articleList  %}
         <div>
             <h3><a href="/page/{{ log.slug }}/">{{ log.title|capfirst  }}</a></h3>
-	    <section>
-              <div class="lead">
-                {{ log.content|markdown:"codehilite"|truncatewords:"30"|safe }}
-              </div>
-            </section>
-            <p><a href="/page/{{ log.slug }}/">Read More</a> | ●{{ log.created|date:"F j, Y"}}</p>
+  	    <blockquote>
+    	      <small>
+	      <a href="/page/{{ log.slug }}/" title="{% trans "ReadMore" %}">
+       	      <button class="btn btn-mini btn-info" type="button">{% trans "ReadMore" %}</button>
+      	      </a>
+              | ●{{ log.created|date:"F j, Y"}} 
+              {% if log.is_valid %} 
+              ●Tags: 
+              {% for tag in log.tag_name.all %}
+                <a href="/tagSearchList/{{ tag }}/"> 
+                <span class="label badge-info" contenteditable="false">{{ tag }}</span>
+                </a> 
+              {% endfor %} 
+              {% endif %} 
+              </small>
+            </blockquote>
         </div>
     {% endfor %}
     <hr>
     <div class="pagination pagination-centered pagination-small">
     <ul>
     {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}">上一页</a></li>
+        <li><a href="?page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a></li>
     {% else %}
-        <li class="disabled"><a>上一页</a></li>
+        <li class="disabled"><a>{% trans 'Previous' %}</a></li>
     {% endif %}
     {% for p in page_range %}
         {% ifequal p page_obj.number %}
-            <li class="active"><a title="当前页">{{ p }}</a></li>
+            <li class="active"><a title="{% trans 'Now' %}">{{ p }}</a></li>
         {% else %}
             {% ifequal 1 p %}
                <li><a href="/" title='Home'>{{ p }}</a></li>
             {% else %}
-               <li><a href="?page={{ p }}" title='第{{p}}页'>{{ p }}</a></li>  
+               <li><a href="?page={{ p }}{{ parameters }}" title='{% trans 'Page of ' %}{{ p }}'>{{ p }}</a></li>  
             {% endifequal %}
         {% endifequal %}
      {% endfor %} 
 
     {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}">下一页</a></li>
+        <li><a href="?page={{ page_obj.next_page_number }}{{ parameters }}">{% trans 'Next' %}</a></li>
     {% else %}
-        <li class="disabled"><a>下一页</a></li>
+        <li class="disabled"><a>{% trans 'Next'%}</a></li>
     {% endif %}  
-    <b>
-        {%if articleList.paginator.num_pages%}共 {{ articleList.paginator.num_pages }} 页{%endif%}
-    </b>
     </div>
 {% endblock %}
